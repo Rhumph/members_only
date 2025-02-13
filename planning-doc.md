@@ -1,0 +1,15 @@
+Database Structure:
+    -name: Clubhouse
+    -Entities: 
+        -Users:
+            -First Name
+            -Last Name
+            -Email
+            -Password
+            -Membership Status
+        -Messages:
+            -Message Content
+            -Date Added
+            -Creator User
+    -Relations
+        -One to Many: Users to Messages (Users can create multiple messages)
