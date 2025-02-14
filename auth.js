@@ -30,12 +30,12 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.user_id);
+  done(null, user.user_id); // Use user.user_id instead of user.id
 });
 
-passport.deserializeUser(async (user_id, done) => {
+passport.deserializeUser(async (id, done) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM users WHERE user_id = $1", [user_id]);
+    const { rows } = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
     const user = rows[0];
     done(null, user);
   } catch (err) {

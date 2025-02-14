@@ -30,10 +30,20 @@ const postLoginPage = (req, res, next) => {
   })(req, res, next);
 };
 
+const logout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+}
+
 router.get('/login', getLoginPage);
 router.post('/login', postLoginPage);
 
 module.exports = {
   getLoginPage,
-  postLoginPage
+  postLoginPage,
+  logout
 };

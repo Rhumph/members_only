@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home_page</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css">
 </head>
 <body>
     <%- include('navbar', {links: links}) %>
-    <h1>test worked</h1>
+    <h1>Member's Posts</h1>
+    <ul>
+        <% posts.forEach(function(post) { %>
+            <li>
+                <a href="/posts/<%= post.message_id %>">
+                </a>
+                <p><%= post.message_content %></p>
+                <% if (user){ %>
+                    <h3><%= post.author_email %></h3>
+                <% } %>
+                <% if (user && user.admin_status){ %>
+                    <form action="/delete-post" method="POST">
+                        <input type="hidden" name="message_id" value="<%= post.message_id %>">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } %>
+            </li>
+        <% }); %>
+    </ul>
+    <% if (user) { %>
+        <form action="/create-post" method="POST">
+            <textarea name="message" placeholder="What's on your mind?"></textarea>
+            <button type="submit">Post</button>
+        </form>
+    <% } %>
 </body>
 </html>

@@ -1,8 +1,23 @@
-<h1>please log in</h1>
-<form action="/login" method="POST">
-  <label for="email">Email</label>
-  <input id="email" name="email" placeholder="email@example.com" type="email" />
-  <label for="password">Password</label>
-  <input id="password" name="password" type="password" />
-  <button>Log In</button>
-</form>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+<body>
+  <%- include('navbar', {links: links}) %>
+  <h1>please log in</h1>
+  <form action="/login" method="POST">
+    <div class="form-item"></div>
+      <label for="email">Email</label>
+      <input id="email" name="email" placeholder="email@example.com" type="email" />
+    </div>
+    <div class="form-item">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+    </div>
+    <div class="form-item">
+      <button>Log In</button>
+    </div>
+  </form>
+</body>
+  

@@ -19,7 +19,12 @@ const postSPWPage = async (req, res) => {
         if (userSecretWord === process.env.SECRET_WORD) {
             await pool.query('UPDATE users SET membership_status = $1 WHERE user_id = $2', ['active', user_id]);
             return res.redirect('/');
-        } else {
+        } else if (userSecretWord === process.env.SECRET_ADMIN_WORD) {
+            await pool.query('UPDATE users SET membership_status = $1, admin_status = $2 WHERE user_id = $3', ['active', true, user_id]);
+            return res.redirect('/');
+
+        }
+        else {
             return res.render('secret_password_page', { links, error: 'Incorrect secret word' });
         }
     } catch (error) {
@@ -28,8 +33,8 @@ const postSPWPage = async (req, res) => {
     }
 }
 
-// router.get('/', getSPWPage);
-// router.post('/', postSPWPage);
+router.get('/', getSPWPage);
+router.post('/', postSPWPage);
 
 
 
